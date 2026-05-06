@@ -71,7 +71,6 @@ public class SingleLinkedList07 {
         if (nd.next == null) tail = nd;
     }
 
-    // 🔥 TAMBAHAN METHOD
     public void getData(int index) {
         NodeMahasiswa07 temp = head;
         for (int i = 0; i < index; i++) {
@@ -84,20 +83,19 @@ public class SingleLinkedList07 {
         NodeMahasiswa07 temp = head;
         int index = 0;
 
-        while (temp != null) {
-            if (temp.data.nama.equalsIgnoreCase(key)) {
-                return index;
-            }
+        while (temp != null && !temp.data.nama.equalsIgnoreCase(key)) {
             temp = temp.next;
             index++;
         }
-        return -1;
+
+        if (temp == null) return -1;
+        else return index;
     }
 
     public void removeFirst() {
-        if (isEmpty()) return;
-
-        if (head == tail) {
+        if (isEmpty()) {
+            System.out.println("Linked List kosong");
+        } else if (head == tail) {
             head = tail = null;
         } else {
             head = head.next;
@@ -105,9 +103,9 @@ public class SingleLinkedList07 {
     }
 
     public void removeLast() {
-        if (isEmpty()) return;
-
-        if (head == tail) {
+        if (isEmpty()) {
+            System.out.println("Linked List kosong");
+        } else if (head == tail) {
             head = tail = null;
         } else {
             NodeMahasiswa07 temp = head;
@@ -122,16 +120,16 @@ public class SingleLinkedList07 {
     public void removeAt(int index) {
         if (index == 0) {
             removeFirst();
-            return;
+        } else {
+            NodeMahasiswa07 temp = head;
+            for (int i = 0; i < index - 1; i++) {
+                temp = temp.next;
+            }
+            temp.next = temp.next.next;
+
+            if (temp.next == null) {
+                tail = temp;
+            }
         }
-
-        NodeMahasiswa07 temp = head;
-        for (int i = 0; i < index - 1; i++) {
-            temp = temp.next;
-        }
-
-        temp.next = temp.next.next;
-
-        if (temp.next == null) tail = temp;
     }
 }

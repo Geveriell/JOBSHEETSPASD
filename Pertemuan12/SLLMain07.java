@@ -1,40 +1,37 @@
 package Pertemuan12;
 
-import java.util.Scanner;
-
 public class SLLMain07 {
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
         SingleLinkedList07 sll = new SingleLinkedList07();
 
-        System.out.print("Masukkan jumlah mahasiswa: ");
-        int jumlah = sc.nextInt();
-        sc.nextLine();
+        Mahasiswa07 mhs1 = new Mahasiswa07("22212202", "Cintia", "3C", 3.5);
+        Mahasiswa07 mhs2 = new Mahasiswa07("23212201", "Bimon", "2B", 3.8);
+        Mahasiswa07 mhs3 = new Mahasiswa07("22212208", "Alvaro", "1A", 4.0);
+        Mahasiswa07 mhs4 = new Mahasiswa07("21212203", "Digna", "4D", 3.6);
 
-        for (int i = 0; i < jumlah; i++) {
-            System.out.println("\nData mahasiswa ke-" + (i + 1));
-
-            System.out.print("NIM   : ");
-            String nim = sc.nextLine();
-
-            System.out.print("Nama  : ");
-            String nama = sc.nextLine();
-
-            System.out.print("Kelas : ");
-            String kelas = sc.nextLine();
-
-            System.out.print("IPK   : ");
-            double ipk = sc.nextDouble();
-            sc.nextLine();
-
-            Mahasiswa07 mhs = new Mahasiswa07(nim, nama, kelas, ipk);
-            sll.addLast(mhs);
-        }
-
-        System.out.println("\n=== HASIL LINKED LIST ===");
         sll.print();
 
-        sc.close();
+        sll.addFirst(mhs4);
+        sll.print();
+
+        sll.addLast(mhs1);
+        sll.print();
+
+        sll.insertAfter("Digna", mhs3);
+        sll.insertAt(2, mhs2);
+        sll.print();
+
+        System.out.println("data index 1 : ");
+        sll.getData(1);
+
+        System.out.println("data Bimon di index : " + sll.indexOf("Bimon"));
+
+        sll.removeFirst();
+        sll.removeLast();
+        sll.print();
+
+        sll.removeAt(0);
+        sll.print();
     }
 }
